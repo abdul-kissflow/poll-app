@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,46 +11,35 @@ import { Login } from "./login";
 import { Home } from "./pages/home";
 import { useEffect } from "react";
 
-import { auth } from "./firebase/config";
-import { getPollsByUserId } from "./firebase/index.js";
-
 function App() {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
 
   useEffect(() => {
-if(!isAuthenticated && window.location.pathname !== "/") {
-  window.location.href = "/"
-}
+    if (!isAuthenticated && window.location.pathname !== "/") {
+      window.location.href = "/";
+    }
   }, []);
 
   return (
     <main>
-        <Router>
-          <Switch>
-            <Route path="/polls">
-              <HomePage />
-            </Route>
-            <Route path="/poll">
-              <PollPage />
-            </Route>
-            <Route path="/">
-           <Login />
-            </Route>
-          </Switch>
-        </Router>
+      <Router>
+        <Switch>
+          <Route path="/polls">
+            <HomePage />
+          </Route>
+          <Route path="/poll">
+            <PollPage />
+          </Route>
+          <Route path="/">
+            <Login />
+          </Route>
+        </Switch>
+      </Router>
     </main>
   );
 }
 
 const HomePage = () => {
-  const [user] = useAuthState(auth);
-
-  useEffect(() => {
-    if (user) {
-      getPollsByUserId(user.uid);
-    }
-  }, [user]);
-
   return <Home />;
 };
 
