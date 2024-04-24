@@ -34,7 +34,7 @@ function App() {
 }
 
 const HomePage = () => {
-  return <div>Home Page</div>;
+  return <Home />;
 };
 
 const PollPage = () => {
