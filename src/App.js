@@ -9,6 +9,7 @@ import "./App.css";
 import { Login } from "./login";
 import { Home } from './pages/home';
 import { ThankYou } from "./thankyou";
+import {Response} from "./response"
 
 function App() {
   return (
@@ -43,7 +44,7 @@ const PollPage = () => {
   return (
     <Switch>
       <Route path={`${match.path}/:pollId/response`}>
-        <ResponsePage />
+        <Response />
       </Route>
       <Route path={`${match.path}/:pollId`}>
         <BuilderPage />
@@ -56,8 +57,5 @@ const BuilderPage = () => {
   return <div>Poll builder page</div>;
 };
 
-const ResponsePage = () => {
-  return <div>Response Page</div>;
-};
 
 export default App;
