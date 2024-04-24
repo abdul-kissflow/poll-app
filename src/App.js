@@ -7,6 +7,7 @@ import {
 
 import "./App.css";
 import { Login } from "./login";
+import { Home } from "./pages/home";
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
 }
 
 const HomePage = () => {
-  return <div>Home Page</div>;
+  return <Home />;
 };
 
 const PollPage = () => {
