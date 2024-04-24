@@ -17,6 +17,11 @@ export function Login() {
       console.error("Error signing in with Google:", error);
     }
   };
+
+  const handleSignOut = () => {
+    auth.signOut();
+  };
+
   return (
     <div className="signInWrapper">
       <Button
@@ -28,6 +33,8 @@ export function Login() {
         Sign in with google
       </Button>
       {user ? <p>Hello {user.displayName}</p> : "Welcome"}
+
+      {user ? <button onClick={handleSignOut}>Logout</button> : null}
     </div>
   );
 }
