@@ -1,0 +1,15 @@
+.thanksMsg {
+  display: flex;
+  gap: 8px;
+}
+
+.thanksMsg span {
+  align-self: center;
+}
+
+.thanksPage {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  place-content: center;
+}

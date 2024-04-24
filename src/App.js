@@ -5,8 +5,9 @@ import {
   useRouteMatch,
 } from "react-router-dom";
 
-import "./App.css";
+import './App.css';
 import { Login } from "./login";
+import { ThankYou } from "./thankyou";
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
           </Route>
           <Route path="/poll">
             <PollPage />
+          </Route>
+          <Route path='/thankyou'>
+            <ThankYou />
           </Route>
           <Route path="/">
             <Login />
