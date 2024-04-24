@@ -4,14 +4,24 @@ import {
   Route,
   useRouteMatch,
 } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 import "./App.css";
 import { Login } from "./login";
-import { Home } from './pages/home';
+import { Home } from "./pages/home";
+import { useEffect } from "react";
 import { ThankYou } from "./thankyou";
 import {Response} from "./response"
 
 function App() {
+  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+
+  useEffect(() => {
+    if (!isAuthenticated && window.location.pathname !== "/") {
+      window.location.href = "/";
+    }
+  }, []);
+
   return (
     <main>
       <Router>
