@@ -10,26 +10,35 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import "./App.css";
 import { Login } from "./login";
 import { Home } from "./pages/home";
+import { useEffect } from "react";
 
 import { auth } from "./firebase/config";
 import { getPollsByUserId } from "./firebase/index.js";
 
 function App() {
+  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+
+  useEffect(() => {
+if(!isAuthenticated && window.location.pathname !== "/") {
+  window.location.href = "/"
+}
+  }, []);
+
   return (
     <main>
-      <Router>
-        <Switch>
-          <Route path="/polls">
-            <HomePage />
-          </Route>
-          <Route path="/poll">
-            <PollPage />
-          </Route>
-          <Route path="/">
-            <Login />
-          </Route>
-        </Switch>
-      </Router>
+        <Router>
+          <Switch>
+            <Route path="/polls">
+              <HomePage />
+            </Route>
+            <Route path="/poll">
+              <PollPage />
+            </Route>
+            <Route path="/">
+           <Login />
+            </Route>
+          </Switch>
+        </Router>
     </main>
   );
 }
