@@ -4,6 +4,7 @@ import {
   Route,
   useRouteMatch,
 } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 import "./App.css";
 import { Login } from "./login";
@@ -14,26 +15,26 @@ function App() {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
 
   useEffect(() => {
-if(!isAuthenticated && window.location.pathname !== "/") {
-  window.location.href = "/"
-}
+    if (!isAuthenticated && window.location.pathname !== "/") {
+      window.location.href = "/";
+    }
   }, []);
 
   return (
     <main>
-        <Router>
-          <Switch>
-            <Route path="/polls">
-              <HomePage />
-            </Route>
-            <Route path="/poll">
-              <PollPage />
-            </Route>
-            <Route path="/">
-           <Login />
-            </Route>
-          </Switch>
-        </Router>
+      <Router>
+        <Switch>
+          <Route path="/polls">
+            <HomePage />
+          </Route>
+          <Route path="/poll">
+            <PollPage />
+          </Route>
+          <Route path="/">
+            <Login />
+          </Route>
+        </Switch>
+      </Router>
     </main>
   );
 }

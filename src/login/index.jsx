@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { GoogleOutlined } from "@ant-design/icons";
 import { signInWithPopup } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -14,14 +14,13 @@ export function Login() {
   console.log(user, "user");
 
   useEffect(() => {
-    if(user) {
-      localStorage.setItem("isAuthenticated", "true")
+    if (user) {
+      localStorage.setItem("isAuthenticated", "true");
       history.push("/polls");
     } else {
-      localStorage.setItem("isAuthenticated", "false")
+      localStorage.setItem("isAuthenticated", "false");
     }
-
-  }, [user])
+  }, [user]);
 
   const signinWithGoogle = async () => {
     try {
