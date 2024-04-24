@@ -1,10 +1,13 @@
 import { Button, Card } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { Layout } from "antd";
+import {useHistory} from "react-router-dom";
+
 
 const { Header, Content } = Layout;
 
 export function Home() {
+  const history = useHistory();
   return (
     <Layout
       style={{
@@ -23,24 +26,21 @@ export function Home() {
             minHeight: "280px",
             padding: "24px",
             borderRadius: "4px",
+            margin:"20px"
           }}
         >
-          <Button>
+          <Button style={{margin:"16px"}} onClick={()=>{
+history.push(`/poll/${pollId}`)
+          }}>
             <PlusOutlined /> Create
           </Button>
           <Card
             hoverable
             style={{ width: 240 }}
-            cover={
-              <img
-                alt="example"
-                src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-              />
-            }
           >
             <Card.Meta
-              title="Europe Street beat"
-              description="www.instagram.com"
+              title="poll name"
+              description="poll desc"
             />
           </Card>
         </div>
