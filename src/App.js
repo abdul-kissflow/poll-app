@@ -7,6 +7,7 @@ import {
 
 import "./App.css";
 import { Login } from "./login";
+import { Home } from './pages/home';
 import { ThankYou } from "./thankyou";
 
 function App() {
