@@ -5,7 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Button } from "antd";
 
 import "./style.css";
-import { auth, googleProvider } from "../firebase";
+import { auth, googleProvider } from "../firebase/config";
 
 export function Login() {
   const [user] = useAuthState(auth);
