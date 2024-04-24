@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { GoogleOutlined } from "@ant-design/icons";
 import { signInWithPopup } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -6,9 +6,16 @@ import { Button } from "antd";
 
 import "./style.css";
 import { auth, googleProvider } from "../firebase/config";
+import { getPollsByUserId } from "../firebase";
 
 export function Login() {
   const [user] = useAuthState(auth);
+
+  useEffect(() => {
+    if (user) {
+      getPollsByUserId(user.uid);
+    }
+  }, [user]);
 
   const signinWithGoogle = async () => {
     try {

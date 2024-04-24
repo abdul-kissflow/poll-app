@@ -28,17 +28,12 @@ export async function getUserDoc(userId) {
   await setDoc(userDocReference, {
     pollIds: [],
   });
-  return await getDoc(userDocReference).data();
+  return getDoc(userDocReference).then((doc) => doc.data());
 }
 
 export function getPollIdsFromUser(user) {
   return user.pollIds;
 }
-
-//on init
-const user = getUserDoc("");
-const pollIds = getPollIdsFromUser(user);
-getPolls(pollIds).then().catch();
 
 //creating a poll
 
@@ -62,7 +57,6 @@ export async function getPollDoc(pollId) {
 }
 
 export async function createResponse(pollId, data) {
-  // Add a new document with a generated id.
   const docRef = await addDoc(collection(db, "responses"), data);
   updateUserWithPollId(pollId, docRef.id);
 }
@@ -72,4 +66,10 @@ export async function updatePollWithResponseId(pollId, responseId) {
   await updateDoc(pollDoc, {
     responses: arrayUnion(responseId),
   });
+}
+
+export async function getPollsByUserId(userId) {
+  const user = await getUserDoc(userId);
+  const pollIds = getPollIdsFromUser(user);
+  return getPolls(pollIds);
 }

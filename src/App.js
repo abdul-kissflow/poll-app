@@ -1,13 +1,18 @@
+import { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   useRouteMatch,
 } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 import "./App.css";
 import { Login } from "./login";
 import { Home } from "./pages/home";
+
+import { auth } from "./firebase/config";
+import { getPollsByUserId } from "./firebase/index.js";
 
 function App() {
   return (
@@ -30,6 +35,14 @@ function App() {
 }
 
 const HomePage = () => {
+  const [user] = useAuthState(auth);
+
+  useEffect(() => {
+    if (user) {
+      getPollsByUserId(user.uid);
+    }
+  }, [user]);
+
   return <Home />;
 };
 
