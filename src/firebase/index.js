@@ -40,12 +40,14 @@ export function getPollIdsFromUser(user) {
 export async function createPoll(userId, data) {
   // Add a new document with a generated id.
   const docRef = await addDoc(collection(db, "polls"), data);
-  updateUserWithPollId(userId, docRef.id);
+  return updateUserWithPollId(userId, docRef.id);
 }
 
 export async function updateUserWithPollId(userId, pollId) {
+  const user = await getUserDoc(userId);
+
   const userDoc = doc(db, "users", userId);
-  await updateDoc(userDoc, {
+  return await updateDoc(userDoc, {
     polls: arrayUnion(pollId),
   });
 }

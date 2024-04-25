@@ -15,6 +15,7 @@ export function Login() {
 
   useEffect(() => {
     if (user) {
+      window.user = user;
       localStorage.setItem("isAuthenticated", "true");
       history.push("/polls");
     } else {

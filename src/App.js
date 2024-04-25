@@ -11,7 +11,10 @@ import { Login } from "./login";
 import { Home } from "./pages/home";
 import { useEffect } from "react";
 import { ThankYou } from "./thankyou";
-import {Response} from "./response"
+import { Response } from "./response";
+import { Creation } from "./pages/creation";
+import { Poll } from "./pages/poll";
+import { Report } from "./pages/report";
 
 function App() {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
@@ -32,7 +35,13 @@ function App() {
           <Route path="/poll">
             <PollPage />
           </Route>
-          <Route path='/thankyou'>
+          <Route path={`/create`}>
+            <BuilderPage />
+          </Route>
+          <Route path={`/report`}>
+            <Report />
+          </Route>
+          <Route path="/thankyou">
             <ThankYou />
           </Route>
           <Route path="/">
@@ -57,15 +66,14 @@ const PollPage = () => {
         <Response />
       </Route>
       <Route path={`${match.path}/:pollId`}>
-        <BuilderPage />
+        <Poll />
       </Route>
     </Switch>
   );
 };
 
 const BuilderPage = () => {
-  return <div>Poll builder page</div>;
+  return <Creation />;
 };
-
 
 export default App;
